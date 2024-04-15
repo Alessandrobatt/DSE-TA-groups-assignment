@@ -6,40 +6,42 @@ import itertools
 ##############################
 
 # TA preferences, each list must end in nan to mark the end of the preferences
+# preferences = {
+#     "Alessandro":[27, 25, 24, 26, 15, 7, 9, 22, 19, 14, nan],
+#     "Austin":[26, 27, 15, 24, 22, 25, 23, 4, 1, 28, nan],
+#     "Crina":[26, 22, 15, 28, 23, nan],
+#     "Kim":[22, 23, 24, 25, 9, 16, 19, 11, 27, 1, nan],
+#     "Koen":[11, 9, 16, 4, 29, nan],
+#     "Yaren":[5, 11, 12, 18, 29, 10, 3, 9, 2, 6, nan],
+#     "Praj":[21, 29, 18, 19, 13, nan],
+#     "Korneel":[7, 3, 29, 17, 16, 9, nan]
+# }
+
 preferences = {
-    "Alessandro":[27, 25, 24, 26, 15, 7, 9, 22, 19, 14, nan],
-    "Austin":[26, 27, 15, 24, 22, 25, 23, 4, 1, 28, nan],
-    "Crina":[26, 22, 15, 28, 23, nan],
-    "Kim":[22, 23, 24, 25, 9, 16, 19, 11, 27, 1, nan],
-    "Koen":[11, 9, 16, 4, 29, nan],
-    "Yaren":[5, 11, 12, 18, 29, 10, 3, 9, 2, 6, nan],
-    "Praj":[21, 29, 18, 19, 13, nan],
-    "Korneel":[7, 3, 29, 17, 16, 9, nan]
+    "Momo":[1, nan],
+    "Crina":[nan],
+    "Katharina":[nan],
+    "Igor":[nan],
+    "Marco":[nan],
+    "Marianna":[nan],
+    "Farouk":[nan],
+    "Kiva":[nan]
 }
 
 # Names of all TAs
-names = ["Alessandro", "Austin", "Crina", "Kim", "Koen", "Yaren", "Praj", "Korneel"]
+# names = ["Alessandro", "Austin", "Crina", "Kim", "Koen", "Yaren", "Praj", "Korneel"]
+names = ["Momo", "Crina", "Katharina", "Igor", "Marco", "Marianna", "Farouk", "Kiva"]
 
 # how much each person cares about their preference, [1] if they care, [0] if they don't, and anything in between
-relevance = [1, 1, 1, 1, 1, 1, 0, 1]
+relevance = [1, 1, 1, 1, 1, 1, 1, 1]
 
 # how many groups would each like to have
-desired_number_of_groups = [3, nan, 3, 4, nan, 4, nan, nan]     # (provided)
-# desired_number_of_groups = [4, 4, 3, 4, 4, 4, 3, 3]     # filling out remaining numbers
+# desired_number_of_groups = [3, nan, 3, 4, nan, 4, nan, nan]     # (provided)
+desired_number_of_groups_temp = [nan, nan, nan, nan, nan, nan, nan, nan]     # (provided)
+desired_number_of_groups = [4, 4, 4, 4, 4, 4, 3, 3]             # (fill out based on preferences above)
 
 # groups available to be assigned
-groups = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29]
-
-# assigned = {
-#     "Alessandro": [nan, nan, nan, nan],
-#     "Austin":     [nan, nan, nan, nan],
-#     "Crina":      [nan, nan, nan, nan],
-#     "Kim":        [nan, nan, nan, nan],
-#     "Koen":       [nan, nan, nan, nan],
-#     "Yaren":      [nan, nan, nan, nan],
-#     "Praj":       [nan, nan, nan, nan],
-#     "Korneel":    [nan, nan, nan, nan]
-# }
+groups = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
 
 
 ##############################
@@ -52,15 +54,28 @@ start_orders_lst = list(itertools.permutations(range(8)))
 print(f"\nPossible pick order permutations: {len(start_orders_lst)}")
 
 
-# filling out remaning group preferences
-num_four_ta = desired_number_of_groups.count(4)
-for i, preferred_num_groups in enumerate(desired_number_of_groups):
-    if preferred_num_groups is nan:
-        if num_four_ta < 5:
-            desired_number_of_groups[i] = 4
-        else:
-            desired_number_of_groups[i] = 3
-    num_four_ta = desired_number_of_groups.count(4)
+# num_groups = groups[-1]
+# max_per_TA = 1
+# assigned_groups = sum(desired_number_of_groups)
+#
+# while assigned_groups < num_groups:
+#     for ta_idx in range(len(names)):
+#         if desired_number_of_groups[ta_idx] < max_per_TA:
+#             desired_number_of_groups[ta_idx] += 1
+#             max_per_TA = max(desired_number_of_groups)
+#
+#     assigned_groups = sum(desired_number_of_groups)
+
+
+# # filling out remaning group preferences
+# num_four_ta = desired_number_of_groups.count(4)
+# for i, preferred_num_groups in enumerate(desired_number_of_groups):
+#     if preferred_num_groups is nan:
+#         if num_four_ta < 5:
+#             desired_number_of_groups[i] = 4
+#         else:
+#             desired_number_of_groups[i] = 3
+#     num_four_ta = desired_number_of_groups.count(4)
 
 print(f"Number of groups for each TA: {desired_number_of_groups}")
 
@@ -155,14 +170,14 @@ for i, pick_order in enumerate(start_orders_lst):
 
     # create a new empty assigned dictionary
     assigned = {
-        "Alessandro": [],
-        "Austin":     [],
-        "Crina":      [],
-        "Kim":        [],
-        "Koen":       [],
-        "Yaren":      [],
-        "Praj":       [],
-        "Korneel":    []
+        "Momo":         [],
+        "Crina":        [],
+        "Katharina":    [],
+        "Igor":         [],
+        "Marco":        [],
+        "Marianna":     [],
+        "Farouk":       [],
+        "Kiva":         []
     }
 
     # in the order provided by the "pick_order" list, loop through the TA names
