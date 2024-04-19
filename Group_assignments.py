@@ -18,14 +18,14 @@ import itertools
 # }
 
 preferences = {
-    "Momo":[1, nan],
-    "Crina":[nan],
-    "Katharina":[nan],
-    "Igor":[nan],
-    "Marco":[nan],
-    "Marianna":[nan],
-    "Farouk":[nan],
-    "Kiva":[nan]
+    "Momo":[25, 23, 4, 24, 21, 20, 18, 22, 3, 5, nan],
+    "Crina":[24, 30, 29, 14, 12, 22, 23, 20, 2, 21, nan],
+    "Katharina":[21, 2, 15, 18, 20, 30, 23, 22, 24, 8, nan],
+    "Igor":[28, 9, 13, 26, 19, 30, 15, 27, 12, 4, nan],
+    "Marco":[18, 25, 9, 20, 23, 21, 2, 30, 1, 6, nan],
+    "Marianna":[9, 13, 12, 4, 28, 14, 3, 1, 26, 7, nan],
+    "Farouk":[24, 10, 30, 1, 23, 21, 30, 19, 4, 20, nan],
+    "Kiva":[31, 19, 8, 5, 20, 7, 10, 15, 12, 22, nan]
 }
 
 # Names of all TAs
@@ -37,8 +37,8 @@ relevance = [1, 1, 1, 1, 1, 1, 1, 1]
 
 # how many groups would each like to have
 # desired_number_of_groups = [3, nan, 3, 4, nan, 4, nan, nan]     # (provided)
-desired_number_of_groups_temp = [nan, nan, nan, nan, nan, nan, nan, nan]     # (provided)
-desired_number_of_groups = [4, 4, 4, 4, 4, 4, 3, 3]             # (fill out based on preferences above)
+desired_number_of_groups_temp = [4, nan, 3, 4, nan, 4, nan, 4]     # (provided)
+desired_number_of_groups = [4, 4, 3, 4, 3, 4, 4, 4]             # (fill out based on preferences above)
 
 # groups available to be assigned
 groups = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30]
